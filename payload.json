@@ -1,82 +1,130 @@
 {
-  "canIpForward": false,
-  "confidentialInstanceConfig": {
-    "enableConfidentialCompute": false
-  },
-  "deletionProtection": false,
-  "description": "",
-  "disks": [
-    {
-      "autoDelete": true,
-      "boot": true,
-      "deviceName": "slave1",
-      "initializeParams": {
-        "diskSizeGb": "10",
-        "diskType": "projects/spark-371009/zones/us-west4-b/diskTypes/pd-balanced",
-        "labels": {},
-        "sourceImage": "projects/debian-cloud/global/images/debian-11-bullseye-v20221102"
-      },
-      "mode": "READ_WRITE",
-      "type": "PERSISTENT"
-    }
-  ],
-  "displayDevice": {
-    "enableDisplay": false
-  },
-  "guestAccelerators": [],
-  "keyRevocationActionType": "STOP",
-  "labels": {},
-  "machineType": "projects/spark-371009/zones/europe-west1-b/machineTypes/e2-medium",
-  "metadata": {
-    "items": [
-      {
-        "key": "startup-script",
-        "value": "apt update\ncurl --output spark.tgz https://dlcdn.apache.org/spark/spark-3.3.1/spark-3.3.1-bin-hadoop3.tgz\napt -y install default-jdk\ntar -xzvf spark.tgz\n./spark-3.3.1-bin-hadoop3/sbin/start-slave.sh spark://spark-master.europe-west1-b.c.spark-371009.internal:7077"
-      }
-    ]
-  },
-  "name": "slave1",
-  "networkInterfaces": [
-    {
-      "accessConfigs": [
+    "canIpForward": false,
+    "confidentialInstanceConfig": {
+        "enableConfidentialCompute": false
+    },
+    "cpuPlatform": "Intel Broadwell",
+    "creationTimestamp": "2023-12-13T07:24:54.786-08:00",
+    "deletionProtection": false,
+    "description": "",
+    "disks": [
         {
-          "name": "External NAT",
-          "networkTier": "PREMIUM"
+            "architecture": "X86_64",
+            "guestOsFeatures": [
+                {
+                    "type": "UEFI_COMPATIBLE"
+                },
+                {
+                    "type": "VIRTIO_SCSI_MULTIQUEUE"
+                },
+                {
+                    "type": "GVNIC"
+                },
+                {
+                    "type": "SEV_CAPABLE"
+                }
+            ],
+            "type": "PERSISTENT",
+            "licenses": [
+                "projects/debian-cloud/global/licenses/debian-11-bullseye"
+            ],
+            "deviceName": "worker1",
+            "autoDelete": true,
+            "source": "projects/mindful-girder-408013/zones/europe-west1-b/disks/worker1",
+            "index": 0,
+            "boot": true,
+            "kind": "compute#attachedDisk",
+            "mode": "READ_WRITE",
+            "interface": "SCSI",
+            "diskSizeGb": "10"
         }
-      ],
-      "stackType": "IPV4_ONLY",
-      "subnetwork": "projects/spark-371009/regions/europe-west1/subnetworks/default"
-    }
-  ],
-  "reservationAffinity": {
-    "consumeReservationType": "ANY_RESERVATION"
-  },
-  "scheduling": {
-    "automaticRestart": false,
-    "instanceTerminationAction": "STOP",
-    "onHostMaintenance": "TERMINATE",
-    "provisioningModel": "SPOT"
-  },
-  "serviceAccounts": [
-    {
-      "email": "569439294570-compute@developer.gserviceaccount.com",
-      "scopes": [
-        "https://www.googleapis.com/auth/devstorage.read_only",
-        "https://www.googleapis.com/auth/logging.write",
-        "https://www.googleapis.com/auth/monitoring.write",
-        "https://www.googleapis.com/auth/servicecontrol",
-        "https://www.googleapis.com/auth/service.management.readonly",
-        "https://www.googleapis.com/auth/trace.append"
-      ]
-    }
-  ],
-  "shieldedInstanceConfig": {
-    "enableIntegrityMonitoring": true,
-    "enableSecureBoot": false,
-    "enableVtpm": true
-  },
-  "tags": {
-    "items": []
-  },
-  "zone": "projects/spark-371009/zones/europe-west1-b"
+    ],
+    "displayDevice": {
+        "enableDisplay": false
+    },
+    "fingerprint": "q1wpIdEkjCY=",
+    "id": "8454852702551437865",
+    "keyRevocationActionType": "NONE",
+    "kind": "compute#instance",
+    "labelFingerprint": "42WmSpB8rSM=",
+    "lastStartTimestamp": "2023-12-13T07:25:00.675-08:00",
+    "machineType": "projects/mindful-girder-408013/zones/europe-west1-b/machineTypes/e2-medium",
+    "metadata": {
+        "fingerprint": "awo3xQY-3OU=",
+        "kind": "compute#metadata",
+        "items": [
+            {
+                "value": "sudo apt update\ncurl --output spark.tgz https://archive.apache.org/dist/spark/spark-3.3.1/spark-3.3.1-bin-hadoop3.tgz\napt -y install default-jdk\ntar -xvzf spark.tgz\n./spark-3.3.1-bin-hadoop3/sbin/start-slave.sh spark://spark-master.europe-west1-b.c.mindful-girder-408013.internal:7077 ",
+                "key": "startup-script"
+            }
+        ]
+    },
+    "name": "worker1",
+    "networkInterfaces": [
+        {
+            "stackType": "IPV4_ONLY",
+            "name": "nic0",
+            "network": "projects/mindful-girder-408013/global/networks/default",
+            "accessConfigs": [
+                {
+                    "name": "External NAT",
+                    "type": "ONE_TO_ONE_NAT",
+                    "natIP": "146.148.21.126",
+                    "kind": "compute#accessConfig",
+                    "networkTier": "PREMIUM"
+                }
+            ],
+            "subnetwork": "projects/mindful-girder-408013/regions/europe-west1/subnetworks/default",
+            "networkIP": "10.132.0.3",
+            "fingerprint": "8B7407XMrPU=",
+            "kind": "compute#networkInterface"
+        }
+    ],
+    "reservationAffinity": {
+        "consumeReservationType": "ANY_RESERVATION"
+    },
+    "resourceStatus": {},
+    "scheduling": {
+        "onHostMaintenance": "TERMINATE",
+        "provisioningModel": "SPOT",
+        "automaticRestart": false,
+        "instanceTerminationAction": "STOP",
+        "preemptible": true
+    },
+    "selfLink": "projects/mindful-girder-408013/zones/europe-west1-b/instances/worker1",
+    "serviceAccounts": [
+        {
+            "email": "688579440349-compute@developer.gserviceaccount.com",
+            "scopes": [
+                "https://www.googleapis.com/auth/devstorage.read_only",
+                "https://www.googleapis.com/auth/logging.write",
+                "https://www.googleapis.com/auth/monitoring.write",
+                "https://www.googleapis.com/auth/servicecontrol",
+                "https://www.googleapis.com/auth/service.management.readonly",
+                "https://www.googleapis.com/auth/trace.append"
+            ]
+        }
+    ],
+    "shieldedInstanceConfig": {
+        "enableSecureBoot": false,
+        "enableVtpm": true,
+        "enableIntegrityMonitoring": true
+    },
+    "shieldedInstanceIntegrityPolicy": {
+        "updateAutoLearnPolicy": true
+    },
+    "shieldedVmConfig": {
+        "enableSecureBoot": false,
+        "enableVtpm": true,
+        "enableIntegrityMonitoring": true
+    },
+    "shieldedVmIntegrityPolicy": {
+        "updateAutoLearnPolicy": true
+    },
+    "startRestricted": false,
+    "status": "RUNNING",
+    "tags": {
+        "fingerprint": "42WmSpB8rSM="
+    },
+    "zone": "projects/mindful-girder-408013/zones/europe-west1-b"
 }
